@@ -352,7 +352,29 @@ return;
 
 document.getElementById("page4").classList.add("hidden");
 document.getElementById("page5").classList.remove("hidden");
+fetch("https://formspree.io/f/xkjwblar", {
 
+    method: "POST",
+
+    headers: {
+        "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify({
+
+        prenom: prenom,
+
+        activite: activiteChoisie,
+
+        date: dateChoisie,
+
+        heure: heureChoisie,
+
+        tentatives: tentatives
+
+    })
+
+});
 document.getElementById("resultat").innerHTML=`
 <h1>❤️ ${prenom} ❤️</h1>
 
