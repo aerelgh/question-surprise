@@ -18,6 +18,32 @@
 
 <style>
 
+.actions{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:25px;
+}
+
+.retour{
+    background:#6c757d;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+.next{
+    background:#2196f3;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+
 *{
     box-sizing:border-box;
     font-family:Arial,sans-serif;
@@ -171,15 +197,17 @@ Suivant ➜
 
 <div class="choice date">Samedi</div>
 <div class="choice date">Dimanche</div>
+</div>
+<div class="actions">
+    <button class="next" id="retourActivite">
+        ⬅ Retour
+    </button>
 
-<button class="next" id="retourActivite">
-⬅ Retour
-</button>
+    <button class="next" id="btnHeure">
+        Suivant ➜
+    </button>
 
-<button class="next" id="btnHeure">
-Suivant ➜
-</button>
-
+</div>
 </div>
 
 <!-- PAGE 4 -->
@@ -196,14 +224,15 @@ Suivant ➜
 <div class="choice heure">18h00</div>
 <div class="choice heure">19h00</div>
 <div class="choice heure">20h00</div>
+</div>
+<div class="actions">
+    <button class="next" id="retourDate">
+        ⬅ Retour
+    </button>
 
-<button class="next" id="retourDate">
-⬅ Retour
-</button>
-
-<button class="next" id="btnConfirmer">
-Confirmer ❤️
-</button>
+    <button class="next" id="btnConfirmer">
+        Confirmer ❤️
+    </button>
 
 </div>
 
@@ -220,6 +249,7 @@ Confirmer ❤️
 </div>
 
 <script>
+
 
 const params = new URLSearchParams(window.location.search);
 
@@ -362,9 +392,9 @@ document.getElementById("retourDate")
 });
 document.getElementById("btnConfirmer")
 .addEventListener("click",()=>{
-    if(heureChoisie===""){
-        alert("Choisis une heure");
-        return;
+if(heureChoisie===""){
+alert("Choisis une heure");
+return;
 }
 
 document.getElementById("page4").classList.add("hidden");
