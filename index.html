@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>❤️ Sarah ❤️</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    margin:0;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    width:100%;
+    max-width:800px;
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+}
+
+.hidden{
+    display:none;
+}
+
+h1{
+    color:#e91e63;
+}
+
+button{
+    cursor:pointer;
+}
+
+#oui{
+    background:#4CAF50;
+    color:white;
+    border:none;
+    padding:15px 35px;
+    border-radius:15px;
+    font-size:20px;
+    margin:10px;
+}
+
+#non{
+    background:#f44336;
+    color:white;
+    border:none;
+    padding:15px 35px;
+    border-radius:15px;
+    font-size:20px;
+    margin:10px;
+    position:relative;
+}
+
+.choice{
+    border:2px solid #ddd;
+    padding:18px;
+    border-radius:15px;
+    margin:10px;
+    cursor:pointer;
+}
+
+.choice:hover{
+    background:#f7f7f7;
+}
+
+.selected{
+    background:#ff4081;
+    color:white;
+    border-color:#ff4081;
+}
+
+.next{
+    background:#2196f3;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:12px;
+    margin-top:20px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<!-- PAGE 1 -->
+
+<div id="page1">
+
+<h1>❤️ Sarah ❤️</h1>
+
+<h2>Accepterais-tu un rendez-vous avec moi ? 😊</h2>
+
+<button id="oui">OUI ❤️</button>
+<button id="non">NON 😅</button>
+
+<p id="message">
+Attention... le bouton NON est très peureux 😂
+</p>
+
+</div>
+
+<!-- PAGE 2 -->
+
+<div id="page2" class="hidden">
+
+<h1>😊 Excellent choix Sarah !</h1>
+
+<h2>Qu'aimerais-tu faire ?</h2>
+
+<div class="grid">
+
+<div class="choice activite">🍕 Pizzeria</div>
+<div class="choice activite">🥩 Grillades</div>
+<div class="choice activite">🍣 Sushi</div>
+<div class="choice activite">☕ Café</div>
+<div class="choice activite">🍦 Crème glacée</div>
+<div class="choice activite">🚶 Vieux-Port de Montréal</div>
+<div class="choice activite">🎬 Cinéma</div>
+<div class="choice activite">🎲 Surprise</div>
+
+</div>
+
+<button class="next" id="btnDate">
+Suivant ➜
+</button>
+
+</div>
+
+<!-- PAGE 3 -->
+
+<div id="page3" class="hidden">
+
+<h1>📅 Choisis une date</h1>
+
+<div class="grid">
+
+<div class="choice date">Vendredi soir</div>
+<div class="choice date">Samedi</div>
+<div class="choice date">Dimanche</div>
+
+</div>
+
+<button class="next" id="btnHeure">
+Suivant ➜
+</button>
+
+</div>
+
+<!-- PAGE 4 -->
+
+<div id="page4" class="hidden">
+
+<h1>🕒 Choisis une heure</h1>
+
+<div class="grid">
+
+<div class="choice heure">18h00</div>
+<div class="choice heure">19h00</div>
+<div class="choice heure">20h00</div>
+
+</div>
+
+<button class="next" id="btnConfirmer">
+Confirmer ❤️
+</button>
+
+</div>
+
+<!-- PAGE 5 -->
+
+<div id="page5" class="hidden">
+
+<h1>🎉 Rendez-vous confirmé 🎉</h1>
+
+<div id="resultat"></div>
+
+</div>
+
+</div>
+
+<script>
+
+let activite="";
+let dateChoisie="";
+let heureChoisie="";
+let tentatives=0;
+
+const non=document.getElementById("non");
+
+const messages=[
+"Pas si vite 😂",
+"Essaie encore 😅",
+"Introuvable 😎",
+"Raté 🤣",
+"Impossible 😏"
+];
+
+non.addEventListener("mouseenter",()=>{
+
+tentatives++;
+
+non.style.position="fixed";
+
+non.style.left=
+Math.random()*(window.innerWidth-150)+"px";
+
+non.style.top=
+Math.random()*(window.innerHeight-80)+"px";
+
+non.innerText=
+messages[Math.floor(Math.random()*messages.length)];
+
+});
+
+document.getElementById("oui")
+.addEventListener("click",()=>{
+
+document.getElementById("page1").classList.add("hidden");
+document.getElementById("page2").classList.remove("hidden");
+
+});
+
+document.querySelectorAll(".activite")
+.forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+document.querySelectorAll(".activite")
+.forEach(x=>x.classList.remove("selected"));
+
+btn.classList.add("selected");
+
+activite=btn.innerText;
+
+});
+
+});
+
+document.querySelectorAll(".date")
+.forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+document.querySelectorAll(".date")
+.forEach(x=>x.classList.remove("selected"));
+
+btn.classList.add("selected");
+
+dateChoisie=btn.innerText;
+
+});
+
+});
+
+document.querySelectorAll(".heure")
+.forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+document.querySelectorAll(".heure")
+.forEach(x=>x.classList.remove("selected"));
+
+btn.classList.add("selected");
+
+heureChoisie=btn.innerText;
+
+});
+
+});
+
+document.getElementById("btnDate")
+.addEventListener("click",()=>{
+
+if(activite===""){
+alert("Choisis une activité");
+return;
+}
+
+document.getElementById("page2").classList.add("hidden");
+document.getElementById("page3").classList.remove("hidden");
+
+});
+
+document.getElementById("btnHeure")
+.addEventListener("click",()=>{
+
+if(dateChoisie===""){
+alert("Choisis une date");
+return;
+}
+
+document.getElementById("page3").classList.add("hidden");
+document.getElementById("page4").classList.remove("hidden");
+
+});
+
+document.getElementById("btnConfirmer")
+.addEventListener("click",()=>{
+
+if(heureChoisie===""){
+alert("Choisis une heure");
+return;
+}
+
+document.getElementById("page4").classList.add("hidden");
+document.getElementById("page5").classList.remove("hidden");
+
+document.getElementById("resultat").innerHTML=`
+<h2>❤️ Sarah ❤️</h2>
+
+<p>Tu viens officiellement d'accepter un rendez-vous avec moi 😊</p>
+
+<p><b>${activite}</b></p>
+
+<p>📅 ${dateChoisie}</p>
+
+<p>🕒 ${heureChoisie}</p>
+
+<p>Tentatives sur NON : ${tentatives} 😂</p>
+
+<p><b>❤️ J'ai déjà hâte de te voir ❤️</b></p>
+`;
+
+});
+
+</script>
+
+</body>
+</html>
