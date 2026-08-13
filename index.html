@@ -200,9 +200,6 @@ Suivant ➜
 <div class="choice heure">20h00</div>
 
 </div>
-<button class="next" id="retourActivite">
-⬅ Retour
-</button>
 <button class="next" id="btnConfirmer">
 Confirmer ❤️
 </button>
@@ -350,7 +347,20 @@ document.getElementById("page4").classList.remove("hidden");
 
 document.getElementById("btnConfirmer")
 .addEventListener("click",()=>{
+document.getElementById("retourActivite")
+.addEventListener("click",()=>{
 
+    document.getElementById("page3").classList.add("hidden");
+    document.getElementById("page2").classList.remove("hidden");
+
+});
+document.getElementById("retourDate")
+.addEventListener("click",()=>{
+
+    document.getElementById("page4").classList.add("hidden");
+    document.getElementById("page3").classList.remove("hidden");
+
+});
 if(heureChoisie===""){
 alert("Choisis une heure");
 return;
