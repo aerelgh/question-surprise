@@ -120,7 +120,7 @@ button{
 
 <div id="page1">
 
-<h1>❤️ Sarah ❤️</h1>
+<h1 id="prenomTitre">❤️ Toi ❤️</h1>
 
 <h2>Accepterais-tu un rendez-vous avec moi ? 😊</h2>
 
@@ -213,6 +213,17 @@ Confirmer ❤️
 </div>
 
 <script>
+
+const params = new URLSearchParams(window.location.search);
+
+const prenom = params.get("prenom") || "Toi";
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    document.getElementById("prenomTitre").innerHTML =
+    `❤️ ${prenom} ❤️`;
+
+});
 
 let activite="";
 let dateChoisie="";
