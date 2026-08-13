@@ -363,17 +363,19 @@ fetch("https://formspree.io/f/xkjwblar", {
     body: JSON.stringify({
 
         prenom: prenom,
-
         activite: activiteChoisie,
-
         date: dateChoisie,
-
         heure: heureChoisie,
-
         tentatives: tentatives
 
     })
 
+})
+.then(() => {
+    console.log("Réponse envoyée");
+})
+.catch(() => {
+    console.log("Erreur envoi");
 });
 document.getElementById("resultat").innerHTML=`
 <h1>❤️ ${prenom} ❤️</h1>
