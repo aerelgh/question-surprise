@@ -352,32 +352,28 @@ return;
 
 document.getElementById("page4").classList.add("hidden");
 document.getElementById("page5").classList.remove("hidden");
+
 fetch("https://formspree.io/f/xkjwblar", {
-
     method: "POST",
-
     headers: {
         "Content-Type": "application/json"
     },
-
     body: JSON.stringify({
-
         prenom: prenom,
-        activite: activiteChoisie,
+        activite: activite,
         date: dateChoisie,
         heure: heureChoisie,
         tentatives: tentatives
-
     })
-
 })
 .then(() => {
     console.log("Réponse envoyée");
 })
-.catch(() => {
-    console.log("Erreur envoi");
+.catch((error) => {
+    console.log(error);
 });
-document.getElementById("resultat").innerHTML=`
+
+document.getElementById("resultat").innerHTML = `
 <h1>❤️ ${prenom} ❤️</h1>
 
 <p>Tu viens officiellement d'accepter un rendez-vous avec moi 😊</p>
