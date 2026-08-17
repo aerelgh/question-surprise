@@ -195,8 +195,8 @@ Suivant ➜
 
 <div class="grid">
 
-<div class="choice date">Samedi</div>
-<div class="choice date">Dimanche</div>
+<div class="choice date">ce Samedi</div>
+<div class="choice date">ce Dimanche</div>
 </div>
 <div class="actions">
     <button class="next" id="retourActivite">
@@ -278,20 +278,29 @@ const messages=[
 "Impossible 😏"
 ];
 
-non.addEventListener("mouseenter",()=>{
+function deplacerBouton(){
 
-tentatives++;
+    tentatives++;
 
-non.style.position="fixed";
+    non.style.position = "fixed";
 
-non.style.left=
-Math.random()*(window.innerWidth-150)+"px";
+    non.style.left =
+    Math.random() * (window.innerWidth - 150) + "px";
 
-non.style.top=
-Math.random()*(window.innerHeight-80)+"px";
+    non.style.top =
+    Math.random() * (window.innerHeight - 80) + "px";
 
-non.innerText=
-messages[Math.floor(Math.random()*messages.length)];
+    non.innerText =
+    messages[Math.floor(Math.random() * messages.length)];
+
+}
+
+non.addEventListener("mouseenter", deplacerBouton);
+
+non.addEventListener("touchstart", function(e){
+
+    e.preventDefault();
+    deplacerBouton();
 
 });
 
