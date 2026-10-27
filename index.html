@@ -251,7 +251,7 @@ Suivant ➜
 
 const params = new URLSearchParams(window.location.search);
 
-const prenom = params.get("prenom") || "Toi";
+const prenom = (params.get("prenom") || "Toi").replace(/[<>&"'`]/g, "");
 
 window.addEventListener("DOMContentLoaded", () => {
 
